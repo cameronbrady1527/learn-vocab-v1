@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <title>Learn Vocab!</title>
 </head>
 <body>
@@ -37,25 +41,32 @@
     <!-- <div id="quiz-container" style="display: none;"> -->
     <div id="quiz-container">
       <div class="flashcard">
-        <div class="letter-grade">A</div>
-        <div class="word-stats" id="word-stats">4 / 4 = 100%</div>
-        <div class="word" id="current-word">Word will appear here</div>
-      </div>
-      <div class="show-or-hide">
-        <button>Reveal</button>
-        <button>Hide</button>
-      </div>
-      <div id="next-card">
-        <button>Next</button>
-      </div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
 
-      <hr>
+        <div class="letter-grade">A</div>
+        <div class="word-score" id="word-score">4 / 4 = 100%</div>
+        <div class="word indie-flower-regular" id="current-word">Aberrant</div>
+      </div>
+      <div class="show-or-hide-or-next">
+        <button onclick="showInfo()">Reveal</button>
+        <button onclick="hideInfo()">Hide Info</button>
+        <button onclick="showNextCard()">Next Card</button>
+      </div>
 
       <!-- Hidden until word has been guessed -->
       <div class="guessed">
         <div class="dictionary">
           <div class="first-page">
             <h5 id="word">Aberrant</h5>
+            <div>Part of Speech: adjective</div>
             <ol id="definition">
               <li>deviating from what is expected or normal</li>
             </ol>
@@ -77,8 +88,6 @@
             <p>Since he had been a steady, cheerful worker for many yeras, his fellow coworkers did not expect his <b>aberrant</b> burst of rage.</p>
           </div>
         </div>
-
-        <hr>
 
         <!-- Visible until a button is clicked -->
         <div class="status">
