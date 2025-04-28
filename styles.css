@@ -487,6 +487,7 @@ hr {
 
 .status button:nth-child(2):hover {
   background-color: #219955;
+  transform: translateY(-2px);
 }
 
 .status button:nth-child(3) {
@@ -497,6 +498,7 @@ hr {
 
 .status button:nth-child(3):hover {
   background-color: #c0392b;
+  transform: translateY(2px);
 }
 
 #sentence-practice {
@@ -546,7 +548,5 @@ hr {
 }
 
 .guessed {
-  border-top: 1px solid #ddd;
-  padding-top: 30px;
-  margin-top: 20px;
+  display: block;
 }
