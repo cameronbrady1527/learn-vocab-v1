@@ -22,12 +22,12 @@
     </div>
 
     <!-- Hide this section once the data has been successfully loaded -->
-    <div class="landing-instructions">
+    <div class="landing-instructions" id="landing-instructions">
       <h4>Ready to start learning?</h4>
       <p>Make sure your file is of the following specs:</p>
       <ul>
         <li>.xlsx, .csv, or .xls</li>
-        <li><b>column headers</b>: word, part of speech, in a sentence (1), in a sentence (2), synonyms, times correct, times encountered</li>
+        <li><b>column headers</b>: word, part of speech, definition, in a sentence (1), in a sentence (2), synonyms, times correct, times encountered</li>
       </ul>
       <div class="user-file-helpers">
         <button onclick="displayExampleVisual()">Example</button>
@@ -39,7 +39,7 @@
 
     <!-- Show this section once data has been loaded -->
     <!-- <div id="quiz-container" style="display: none;"> -->
-    <div id="quiz-container">
+    <div id="quiz-container" style="display: none;">
       <div class="flashcard">
         <div class="line"></div>
         <div class="line"></div>
@@ -100,8 +100,10 @@
         <textarea name="practice" id="sentence-practice" placeholder="Practice here..."></textarea>
       </div>
     </div>
-
-
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
