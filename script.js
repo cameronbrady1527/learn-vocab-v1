@@ -103,11 +103,9 @@ async function parseExcel(data) {
 
  // logic for moving onto next word
 const showNextWord = () => {
-  guessed = false;
-
   const index = generateRandomIndex(vocabData.length);
-  const word = vocabData[index];
-
+  let word = vocabData[index];
+  guessed = false;
   currentWord = word;
 
   hideInfo();
@@ -140,6 +138,8 @@ const showNextWord = () => {
     document.getElementById('word-score').textContent = "";
     document.getElementById('letter-grade').textContent = "";
   }
+
+  word = currentWord;
 }
 
 // Utility functions
@@ -217,6 +217,7 @@ const gotCorrect = () => {
   currentWord.timesEncountered += 1;
 
   computeFlashcardStats(currentWord.timesCorrect, currentWord.timesEncountered);
+  saveState();
 }
 
 const gotIncorrect = () => {
@@ -226,6 +227,7 @@ const gotIncorrect = () => {
   currentWord.timesEncountered += 1;
 
   computeFlashcardStats(currentWord.timesCorrect, currentWord.timesEncountered);
+  saveState();
 }
 
 const showQuizInterface = () => {
@@ -238,3 +240,5 @@ const hideInfo = () => document.getElementById('guessed').style.display = 'none'
 const clearTextArea = () => document.getElementById('sentence-practice').value = "";
 
 const generateRandomIndex = (wordCount) => Math.floor(Math.random() * wordCount);
+
+const saveState = () => localStorage.setItem('vocabData', JSON.stringify(vocabData));
