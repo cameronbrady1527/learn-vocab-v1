@@ -26,7 +26,7 @@
       <h4>Ready to start learning?</h4>
       <p>Make sure your file is of the following specs:</p>
       <ul>
-        <li>.xlsx, .csv, or .xls</li>
+        <li>.xlsx or .csv</li>
         <li><b>column headers</b>: word, part of speech, definition, in a sentence (1), in a sentence (2), synonyms, times correct, times encountered</li>
       </ul>
       <div class="user-file-helpers">
@@ -64,7 +64,7 @@
       <hr>
 
       <!-- Hidden until word has been guessed -->
-      <div class="guessed">
+      <div class="guessed" id="guessed" style="display: none;">
         <div class="dictionary">
           <div class="first-page">
             <h5 id="word">Aberrant</h5>
@@ -102,8 +102,8 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script> -->
+  <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
