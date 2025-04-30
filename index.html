@@ -21,24 +21,21 @@
       <button onclick="downloadCSV()">Save Progress</button>
     </div>
 
-    <!-- Hide this section once the data has been successfully loaded -->
     <div class="landing-instructions" id="landing-instructions">
       <h4>Ready to start learning?</h4>
       <p>Make sure your file is of the following specs:</p>
       <ul>
-        <li>.xlsx or .csv</li>
-        <li><b>column headers</b>: word, part of speech, definition, in a sentence (1), in a sentence (2), synonyms, times correct, times encountered</li>
+        <li>.xlsx (.csv support coming soon)</li>
+        <li><b>column headers</b>: Word, Type, Definition, In a sentence (1), In a sentence (2), Synonyms, Times Correct, Times Encountered</li>
       </ul>
-      <div class="user-file-helpers">
+      <!-- <div class="user-file-helpers">
         <button onclick="displayExampleVisual()">Example</button>
         <button onclick="downloadTemplate()">Download a template</button>
-      </div>
+      </div> -->
     </div>
 
     <hr>
 
-    <!-- Show this section once data has been loaded -->
-    <!-- <div id="quiz-container" style="display: none;"> -->
     <div id="quiz-container" style="display: none;">
       <div class="flashcard">
         <div class="line"></div>
@@ -51,58 +48,48 @@
         <div class="line"></div>
         <div class="line"></div>
 
-        <div class="letter-grade">A</div>
-        <div class="word-score" id="word-score">4 / 4 = 100%</div>
-        <div class="word indie-flower-regular" id="current-word">Aberrant</div>
+        <div class="letter-grade" id="letter-grade"></div>
+        <div class="word-score" id="word-score"></div>
+        <div class="word indie-flower-regular" id="current-word">Loading...</div>
       </div>
       <div class="show-or-hide-or-next">
         <button onclick="showInfo()">Reveal</button>
         <button onclick="hideInfo()">Hide Info</button>
-        <button onclick="showNextCard()">Next Card</button>
+        <button onclick="showNextWord()">Next Card</button>
       </div>
 
       <hr>
 
-      <!-- Hidden until word has been guessed -->
       <div class="guessed" id="guessed" style="display: none;">
         <div class="dictionary">
           <div class="first-page">
-            <h5 id="word">Aberrant</h5>
-            <div>Part of Speech: adjective</div>
+            <h5 id="word"></h5>
+            <div id="part-of-speech"></div>
             <ol id="definition">
-              <li>deviating from what is expected or normal</li>
+              <li></li>
             </ol>
             <div class="synonyms">
               <p>Synonyms:</p>
-              <ul id="synonyms">
-                <li>abnormal</li>
-                <li>anomalous</li>
-                <li>deviant</li>
-                <li>divergent</li>
-                <li>errant</li>
-                <li>irregular</li>
-              </ul>
+              <ul id="synonyms"></ul>
             </div>
           </div>
           <div class="second-page">
             <h5>In a sentence</h5>
-            <p>In an <b>aberrant</b> series of events, the known criminal beat a former prosecutor for the presidency.</p>
-            <p>Since he had been a steady, cheerful worker for many yeras, his fellow coworkers did not expect his <b>aberrant</b> burst of rage.</p>
+            <p id="sentence1"></p>
+            <p id="sentence2"></p>
           </div>
         </div>
 
-        <!-- Visible until a button is clicked -->
         <div class="status">
           <div>Did you get it?</div>
-          <button>Yes :)</button>
-          <button>I will next time!</button>
+          <button onclick="gotCorrect()">Yes :)</button>
+          <button onclick="gotIncorrect()">I will next time!</button>
         </div>
         <textarea name="practice" id="sentence-practice" placeholder="Practice here..."></textarea>
       </div>
     </div>
   </div>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script> -->
   <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
   <script src="script.js"></script>
 </body>
