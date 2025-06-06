@@ -15,9 +15,9 @@ Vocabulary Tracker is an interactive learning tool that helps you master new voc
 ## Features
 
 ### Data Management
-- **Import Existing Data**: Upload a vocabulary Excel file, following a schematic defined below
+- **Import Existing Data**: Upload a vocabulary Excel/CSV file, following a schematic defined below
 - **Persistent Storage**: All progress is automatically saved in your browser
-- **Export Progress**: Download your vocabulary list with updated statistics in an Excel file `data.xlsx`
+- **Export Progress**: Download your vocabulary list with updated statistics in an Excel/CSV file `data.xlsx`/`data.csv`. Your export file type depends on your input file type.
 
 ### Learning Interface
 - **Interactive Flashcards**: Simple and intuitive card-based learning
@@ -35,7 +35,7 @@ Vocabulary Tracker is an interactive learning tool that helps you master new voc
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge, Brave)
-- Vocabulary data in Excel or CSV (coming soon!) format
+- Vocabulary data in Excel or CSV format
 
 ### Required Data Format
 Your vocabulary spreadsheet should include these columns (in this order):
@@ -58,7 +58,7 @@ The app will automatically add:
 5. Click "Reveal Definition" to check your answer
 6. Mark your answer as "Yes :)" or "I will next time?" under the "Did you get it?" question
 7. Continue through your vocabulary list by pressing "Next Card"
-8. Click "Save Progress" at any time to save your progress to an exported Excel file (reminder: your progress is saved in the local browser)
+8. Click "Save Progress" at any time to save your progress to an exported Excel/CSV file (**reminder**: your progress is saved in the local browser)
 
 ## Data Persistence
 
@@ -77,7 +77,7 @@ The application is designed to work with the specific column format described ab
 
 Vocabulary Tracker is built using:
 - HTML5, CSS3, and JavaScript
-- PapaParse for CSV parsing (coming soon!)
+- PapaParse for CSV parsing
 - SheetJS for Excel file support
 - Browser localStorage for data persistence
 
