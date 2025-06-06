@@ -105,11 +105,26 @@ async function parseExcel(data) {
 }
 
 const parseCSV = (data) => {
-  const parsed = PageSwapEvent.parse(data, {
+  const requiredColumns = [
+    'Word', 'Type', 'Definition',
+    'In a sentence (1)', 'In a sentence(2)',
+    'Synonyms', 'Times Correct', 'Times Encountered'
+  ];
+  
+  const parsed = Papa.parse(data, {
     header: true,
     dynamicTyping: true,
     skipEmptyLines: true,
-    transformHeader: (header) => header.trim()
+    transformHeader: (header) => header.trim(),
+    complete: function(results) {
+      const headers = results.meta.fields;
+      const missingColumns = requiredColumns.filter(col => !headers.includes(col));
+
+      if (missingColumns.length > 0) {
+        alert(`Missing required columns: ${missingColumns.join(', ')}. Please adjust!`);
+        return;
+      }
+    }
   }); 
 
   if (parsed.errors.length > 0) {
