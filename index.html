@@ -18,7 +18,7 @@
         <input type="file" id="csv-file" accept=".csv,.xlsx,.xls">
         <button onclick="handleFileUpload()">Load Vocab</button>
       </div>
-      <button onclick="downloadCSV()">Save Progress</button>
+      <button onclick="exportToExcel()">Save Progress</button>
     </div>
 
     <div class="landing-instructions" id="landing-instructions">
@@ -91,6 +91,7 @@
   </div>
 
   <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+  <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

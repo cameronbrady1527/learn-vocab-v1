@@ -142,6 +142,43 @@ const showNextWord = () => {
   word = currentWord;
 }
 
+const exportToExcel = () => {
+  // Create a workbook
+  const wb = XLSX.utils.book_new();
+
+  // Create a worksheet
+  const ws = XLSX.utils.json_to_sheet(vocabData);
+
+  // Add to sheet
+  XLSX.utils.book_append_sheet(wb, ws, "Vocab Data")
+
+  // TODO: ADD IN ANOTHER SHEET THAT HAS SCORE STATISTICS
+
+  // Write the workbook to binary
+  const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' })
+
+  function s2ab(s) {
+    const buf = new ArrayBuffer(s.length);
+    const view = new Uint8Array(buf);
+    
+    for (let i = 0; i < s.length; i++) {
+      view[i] = s.charCodeAt(i) & 0xFF;
+    }
+
+    return buf;
+  }
+
+  // Create blob and trigger download
+  const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+
+  a.href = url;
+  a.download = 'data.xlsx';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 // Utility functions
 const clearUL = (ul) => {
   while(ul.firstChild) {
