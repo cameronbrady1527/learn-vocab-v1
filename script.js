@@ -2,6 +2,7 @@
 let vocabData = [];
 let guessed = false;
 let currentWord;
+const fileNameEnding = "";
 
 // behavior when page loads
 window.onload = function() {
@@ -31,8 +32,10 @@ const handleFileUpload = () => {
     const fileName = file.name.toLowerCase();
 
     if (fileName.endsWith('.csv')) {
-      // parseCSV(data); // not yet implemented
+      fileNameEnding = '.csv';
+      parseCSV(data);
     } else if (fileName.endsWith('.xlsx')) {
+      fileNameEnding = '.xlsx';
       parseExcel(data);
     } else {
       alert('Unsupported file format. Please upload a CSV or Excel file.')
@@ -101,6 +104,47 @@ async function parseExcel(data) {
   setTimeout(() => showNextWord(), 5000);
 }
 
+const parseCSV = (data) => {
+  const parsed = PageSwapEvent.parse(data, {
+    header: true,
+    dynamicTyping: true,
+    skipEmptyLines: true,
+    transformHeader: (header) => header.trim()
+  });
+
+  if (parsed.errors.length > 0) {
+    console.error('CSV parsing errors: ', parsed.errors);
+    alert('Error parsing CSV file. Please check the file format or use an Excel file.');
+    return;
+  }
+
+  const transformedData = parsed.data.map(row => {
+    return {
+      word: row['Word'] || '',
+      partOfSpeech: row['Type'] || '',
+      definition: row['Definition'] || '',
+      sentence1: row['In a sentence (1)'] || '',
+      sentence2: row['In a sentence (2)'] || '',
+      synonyms: row['Synonyms'] || '',
+      timesCorrect: parseInt(row['Times Correct']) || 0,
+      timesEncountered: parseInt(row['Times Encountered']) || 0
+    };
+  });
+
+  const validData = transformedData.filter(item => item.word && item.word.trim() !== '');
+
+  if (validData.length === 0) {
+    alert('No valid vocabulary data found in the CSV file. Check your schema and rows or migrate to an Excel file.');
+    return;
+  }
+
+  vocabData = validData;
+  localStorage.setItem('vocabData', JSON.stringify(vocabData));
+
+  showQuizInterface();
+  setTimeout(() => showNextWord(), 5000);
+}
+
  // logic for moving onto next word
 const showNextWord = () => {
   const index = generateRandomIndex(vocabData.length);
@@ -143,18 +187,14 @@ const showNextWord = () => {
 }
 
 const exportToExcel = () => {
-  // Create a workbook
   const wb = XLSX.utils.book_new();
 
-  // Create a worksheet
   const ws = XLSX.utils.json_to_sheet(vocabData);
 
-  // Add to sheet
   XLSX.utils.book_append_sheet(wb, ws, "Vocab Data")
 
   // TODO: ADD IN ANOTHER SHEET THAT HAS SCORE STATISTICS
 
-  // Write the workbook to binary
   const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' })
 
   function s2ab(s) {
@@ -168,15 +208,23 @@ const exportToExcel = () => {
     return buf;
   }
 
-  // Create blob and trigger download
-  const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  createBlob(s2ab(wbout), 'application/octet-stream', 'data.xlsx');
+}
 
-  a.href = url;
-  a.download = 'data.xlsx';
-  a.click();
-  URL.revokeObjectURL(url);
+const exportToCSV = () => {
+  const headers = Object.keys(vocabData[0]);
+  const csvContent = [
+    headers.join(','),
+    ...data.map(row  => headers.map(header => {
+      const value = row[header];
+
+      return typeof value === 'string' && value.includes(',')
+        ? `"${value.replace(/"/g, '""')}"`
+        : value;
+    }).join(','))
+  ].join('\n');
+
+  createBlob(csvContent, 'text/csv', 'data.csv')
 }
 
 // Utility functions
@@ -279,3 +327,16 @@ const clearTextArea = () => document.getElementById('sentence-practice').value =
 const generateRandomIndex = (wordCount) => Math.floor(Math.random() * wordCount);
 
 const saveState = () => localStorage.setItem('vocabData', JSON.stringify(vocabData));
+
+const exportToProperEnding = () => (fileNameEnding === '.xlsx') ? exportToExcel() : exportToCSV();
+
+const createBlob = (blobPart, blobType, filename) => {
+  const blob = new Blob([blobPart], { type: blobType });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
