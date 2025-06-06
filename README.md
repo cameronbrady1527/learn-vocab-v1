@@ -9,15 +9,15 @@ Vocabulary Tracker is an interactive learning tool that helps you master new voc
 - Upload your existing vocabulary spreadsheet
 - Test yourself on definitions and track your progress
 - Get personalized statistics for each word
-- Focus more on words you struggle with
-- Export your progress data back to CSV/Excel format
+- Focus more on words you struggle with (coming soon!)
+- Export your progress data back to Excel format
 
 ## Features
 
 ### Data Management
-- **Import Existing Data**: Upload your vocabulary Excel/CSV files
+- **Import Existing Data**: Upload a vocabulary Excel file, following a schematic defined below
 - **Persistent Storage**: All progress is automatically saved in your browser
-- **Export Progress**: Download your vocabulary list with updated statistics
+- **Export Progress**: Download your vocabulary list with updated statistics in an Excel file `data.xlsx`
 
 ### Learning Interface
 - **Interactive Flashcards**: Simple and intuitive card-based learning
@@ -25,7 +25,7 @@ Vocabulary Tracker is an interactive learning tool that helps you master new voc
 - **Self-Assessment**: Mark your answers as correct or incorrect
 - **Word Stats**: See your success rate for each individual word
 
-### Smart Learning
+### Smart Learning (coming soon!)
 - **Prioritized Words**: Algorithm favors words with lower success rates
 - **Performance Tracking**: Both session and overall statistics
 - **Visual Progress**: Progress bar shows your improvement
@@ -34,8 +34,8 @@ Vocabulary Tracker is an interactive learning tool that helps you master new voc
 ## Getting Started
 
 ### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Vocabulary data in Excel or CSV format
+- Modern web browser (Chrome, Firefox, Safari, Edge, Brave)
+- Vocabulary data in Excel or CSV (coming soon!) format
 
 ### Required Data Format
 Your vocabulary spreadsheet should include these columns (in this order):
@@ -52,20 +52,20 @@ The app will automatically add:
 ### How to Use
 
 1. Open the application in your web browser
-2. Click "Choose File" and select your vocabulary Excel/CSV file
-3. Click "Load Vocabulary" to import your data
+2. Click "Choose File" and select your vocabulary Excel file
+3. Click "Load Vocab" to import your data
 4. A word will be displayed - try to recall its definition
 5. Click "Reveal Definition" to check your answer
-6. Mark your answer as "Correct" or "Incorrect"
-7. Continue through your vocabulary list
-8. Click "Export Data" at any time to save your progress
+6. Mark your answer as "Yes :)" or "I will next time?" under the "Did you get it?" question
+7. Continue through your vocabulary list by pressing "Next Card"
+8. Click "Save Progress" at any time to save your progress to an exported Excel file (reminder: your progress is saved in the local browser)
 
 ## Data Persistence
 
 The application saves all of your progress data in your browser's localStorage. This means:
 
 - Your data persists even if you close the browser or refresh the page
-- Data is stored locally on your device, not on any external server
+- Data is stored locally on your device in your browser, not on any external server, so you can run the program offline!
 - You can export your data at any time to back it up
 - To use across multiple devices, export your data and import it on the other device
 
@@ -77,7 +77,7 @@ The application is designed to work with the specific column format described ab
 
 Vocabulary Tracker is built using:
 - HTML5, CSS3, and JavaScript
-- PapaParse for CSV parsing
+- PapaParse for CSV parsing (coming soon!)
 - SheetJS for Excel file support
 - Browser localStorage for data persistence
 
