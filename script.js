@@ -110,7 +110,7 @@ const parseCSV = (data) => {
     dynamicTyping: true,
     skipEmptyLines: true,
     transformHeader: (header) => header.trim()
-  });
+  }); 
 
   if (parsed.errors.length > 0) {
     console.error('CSV parsing errors: ', parsed.errors);
