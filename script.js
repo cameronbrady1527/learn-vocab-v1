@@ -2,7 +2,7 @@
 let vocabData = [];
 let guessed = false;
 let currentWord;
-const fileNameEnding = "";
+let fileNameEnding = "";
 
 // behavior when page loads
 window.onload = function() {
