@@ -47,6 +47,8 @@ const handleFileUpload = () => {
   } else {
     reader.readAsArrayBuffer(file);
   }
+
+  location.reload();
 }
 
 async function parseExcel(data) {
